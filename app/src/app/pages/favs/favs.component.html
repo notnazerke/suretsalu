@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="filters">
+        <a class="saved" routerLink="../favs">Закладки <i class="bi bi-bookmark"></i> </a>
+        <!--<a class="liked" routerLink="../liked">Понравившиеся <i class="bi bi-heart"></i></a>-->
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-4" *ngFor="let cd of courseData">
+            <div  *ngIf="cd.isSaved==true" class="coursebox mt-3 mb-3">
+                <img src="{{cd.courseImg}}">
+                <button (click) = "Save(cd)" class="save" *ngIf="cd.isSaved==false"><i class="bi bi-bookmark"></i></button>
+                <button (click) = "Save(cd)" class="save" *ngIf="cd.isSaved==true"><i class="bi bi-bookmark-fill"></i></button>
+                <h1>{{cd.title}}</h1>
+                
+                <p>{{cd.courseDetails}}</p>
+                <p>{{cd.coursePrice}}₸</p>
+    
+                <a [routerLink] = "['/courses', cd.id]" class="apply">Записаться</a>
+                <button (click) = "addLike(cd)" class="btn" *ngIf="cd.isLiked==false"> <i class="bi bi-heart"></i> {{cd.likes}}</button>
+                <button (click) = "addLike(cd)" class="btn" *ngIf="cd.isLiked==true"><i class="bi bi-heart-fill"></i> {{cd.likes}}</button>
+                <div class="ratebox">
+                    <button (click) = "Rate(cd, 1)" *ngIf="cd.isRated==false"><i class="bi bi-star"></i></button>
+                    <button (click) = "Rate(cd, 2)" *ngIf="cd.isRated==false"><i class="bi bi-star"></i></button>
+                    <button (click) = "Rate(cd, 3)" *ngIf="cd.isRated==false"><i class="bi bi-star"></i></button>
+                    <button (click) = "Rate(cd, 4)" *ngIf="cd.isRated==false"><i class="bi bi-star"></i></button>
+                    <button (click) = "Rate(cd, 5)" *ngIf="cd.isRated==false"><i class="bi bi-star"></i></button>
+                    <p>{{cd.rating}}</p>
+                    <p *ngIf="cd.isRated==true">Rated</p>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
